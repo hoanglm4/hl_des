@@ -10,7 +10,7 @@ Supported: DES/CBC/PKCS7Padding
 
 ```yaml
 dependencies:
-  hl_des: ^2.0.0  #latest version
+  hl_des: ^2.0.1  #latest version
 ```
 
 ### Example
