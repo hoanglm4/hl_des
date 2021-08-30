@@ -35,8 +35,8 @@ class HlDesPlugin : FlutterPlugin, MethodCallHandler {
         val iv = params["iv"] as String
         val data = params["data"] as String
         when (call.method) {
-            "desEncrypt" -> result.success(decrypt(data, key, iv))
-            "desDecrypt" -> result.success(encrypt(data, key, iv))
+            "desEncrypt" -> result.success(encrypt(data, key, iv))
+            "desDecrypt" -> result.success(decrypt(data, key, iv))
             else -> result.notImplemented()
         }
     }
