@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
+  FutureOr<void> initPlatformState() async {
     String decrypted;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
