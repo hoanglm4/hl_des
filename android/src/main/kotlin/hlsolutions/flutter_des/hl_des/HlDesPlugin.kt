@@ -57,7 +57,7 @@ class HlDesPlugin : FlutterPlugin, MethodCallHandler {
             val keySpec: KeySpec = DESKeySpec(sCryptKey.toByteArray(charset("ASCII")))
             val key = SecretKeyFactory.getInstance("DES").generateSecret(keySpec)
             val iv = IvParameterSpec(btInitializationVector)
-            val cipher = Cipher.getInstance("DES/CBC/PKCS7Padding")
+            val cipher = Cipher.getInstance("DES/CBC/PKCS7PADDING", "BC")
             cipher.init(Cipher.ENCRYPT_MODE, key, iv)
             val btEncoded = cipher.doFinal(plainText.toByteArray(charset("ASCII")))
             sResult = Base64.encodeToString(btEncoded, Base64.DEFAULT)
@@ -79,14 +79,13 @@ class HlDesPlugin : FlutterPlugin, MethodCallHandler {
             val keySpec: KeySpec = DESKeySpec(sCryptKey.toByteArray(charset("ASCII")))
             val key = SecretKeyFactory.getInstance("DES").generateSecret(keySpec)
             val iv = IvParameterSpec(btInitializationVector)
-            val cipher = Cipher.getInstance("DES/CBC/PKCS7Padding")
-            cipher.init(Cipher.ENCRYPT_MODE, key, iv)
+            val cipher = Cipher.getInstance("DES/CBC/PKCS7PADDING", "BC")
             // Decrypt
             cipher.init(Cipher.DECRYPT_MODE, key, iv)
             val btDecoded = cipher.doFinal(Base64.decode(plainText, Base64.DEFAULT))
             sResult = String(btDecoded)
         } catch (e: java.lang.Exception) {
-            Log.e("HlDesPlugin", "decrypt exception", e)
+            Log.e("HlDesPlugin", "decrypt exception: $plainText", e)
         }
         return sResult
     }
